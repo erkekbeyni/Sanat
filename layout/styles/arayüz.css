@@ -1,0 +1,386 @@
+﻿@charset "utf-8";
+
+
+@import url("galeri.css");
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: verdana, Arial, Helvetica, sans-serif;
+    color: #CCCCCC;
+    background-color: #2E2E2E;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.nostart {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.clear {
+    clear: both;
+}
+
+br.clear {
+    clear: both;
+    margin-top: -15px;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+}
+
+.fl_left, .imgl {
+    float: left;
+}
+
+.fl_right, .imgr {
+    float: right;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.imgl, .imgr {
+    border: 1px solid #666666;
+    padding: 5px;
+}
+
+.imgl {
+    margin: 0 8px 8px 0;
+    clear: left;
+}
+
+.imgr {
+    margin: 0 0 8px 8px;
+    clear: right;
+}
+
+div.wrapper {
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+    div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6 {
+        margin: 0 0 20px 0;
+        padding: 0 0 8px 0;
+        font-size: 22px;
+        font-weight: normal;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        border-bottom: 1px dashed #DDDDDD;
+    }
+
+
+
+.col2 {
+    color: #DBDBDB;
+    background-color: #000000;
+    border-bottom: 1px solid #3B3B3B;
+}
+
+.col3 {
+    color: #DBDBDB;
+    background-color: #000000;
+    border-bottom: 1px solid #3B3B3B;
+}
+
+.col4 {
+    color: #DBDBDB;
+    background-color: #000000;
+    border-bottom: 1px solid #3B3B3B;
+}
+
+.col5 {
+    color: #CCCCCC;
+    background-color: #000000;
+    border-bottom: 1px solid #3B3B3B;
+}
+
+    .col5 a {
+        color: #99CC00;
+        background-color: #000000;
+    }
+
+.col6 {
+    color: #FFFFFF;
+    background-color: #1B1B1B;
+    border-bottom: 1px solid #3B3B3B;
+}
+
+.col7, .col7 a {
+    color: #CCCCCC;
+    background-color: #2E2E2E;
+}
+#services {
+    padding: 20px 0 0 0;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+    #services img {
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+    }
+
+    #services ul {
+        display: block;
+        width: 960px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+    }
+
+    #services li {
+        display: block;
+        float: left;
+        width: 234px;
+        height: 210px;
+        margin: 0 8px 8px 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+        #services li.last {
+            margin-right: 0;
+        }
+
+    #services a strong {
+        display: none;
+        width: 100%;
+        margin: 0;
+        padding: 15px 0;
+        font-weight: normal;
+        text-align: center;
+        color: #5B5B5B;
+        background-color: #232323;
+    }
+
+    #services a:hover strong {
+        display: block;
+    }
+
+
+#topbar, #header, #galeri, #footer, #services {
+    display: block;
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+}
+
+
+#topbar {
+    height: 25px;
+    padding: 10px 0;
+}
+
+
+#header {
+    z-index: 1000;
+    padding: 0 0 20px 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+    #header #logo {
+        display: block;
+        float: left;
+        width: 300px;
+    }
+
+    #header h1, #header p {
+        margin: 0;
+        padding: 0;
+        border: none;
+        clear: left;
+        font-size: 16px;
+    }
+
+    #header h1 {
+        margin-bottom: 5px;
+        font-size: 36px;
+    }
+
+        #header h1 a {
+            color: #DBDBDB;
+            background-color: #000000;
+        }
+
+
+#contactform {
+    display: block;
+    float: left;
+    width: 350px;
+}
+
+#header ul#topnav {
+    display: block;
+    float: right;
+    width: 650px;
+    margin: 25px 0 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+}
+
+    #header ul#topnav ul, #header li {
+        float: right;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        #header li a:link, #header li a:visited, #header li a:hover {
+            display: block;
+            margin: 0;
+            padding: 5px 20px;
+            color: #585858;
+            background-color: #000000;
+            border-right: 2px solid #272727;
+        }
+
+        #header ul#topnav ul li a:link, #header ul#topnav ul li a:visited {
+            border: none;
+        }
+
+    #header ul#topnav li.last a {
+        margin-right: 0;
+    }
+
+    #header li a:hover, #header ul#topnav li.active a {
+        color: #FFFFFF;
+        background-color: #000000;
+    }
+
+#header li li a:link, #header li li a:visited {
+    width: 150px;
+    float: none;
+    margin: 0;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #585858;
+    background-color: #171E24;
+}
+
+#header li li a:hover {
+    color: #FFFFFF;
+    background-color: #323639;
+}
+
+#header li ul {
+    background: #FFFFFF;
+    z-index: 9999;
+    position: absolute;
+    left: -999em;
+    height: auto;
+    width: 170px;
+}
+
+    #header li ul a {
+        width: 140px;
+    }
+
+    #header li ul ul {
+        margin: -32px 0 0 0;
+    }
+
+#header li:hover ul ul {
+    left: -999em;
+}
+
+#header li:hover ul, #header li li:hover ul {
+    left: auto;
+}
+
+#header li:hover {
+    position: static;
+}
+form, fieldset, legend {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+legend {
+    display: none;
+}
+
+#contactform form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: normal;
+}
+
+#contactform label {
+    display: inline;
+    width: 170px;
+    float: left;
+    margin: 0 0 12px 0;
+    padding: 0;
+}
+
+    #contactform label.margin {
+        margin-left: 10px;
+    }
+
+    #contactform label input, #contactform label textarea {
+        display: block;
+        width: 162px;
+        margin: 5px 0;
+        padding: 3px;
+        color: #000000;
+        background-color: #F7F7F7;
+        border: 1px solid #CCCCCC;
+    }
+
+    #contactform label textarea {
+        display: block;
+        width: 342px;
+        overflow: auto;
+    }
+
+#contactform p {
+    display: block;
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+    #contactform p input {
+        padding: 5px 10px;
+        color: #666666;
+        background-color: #F7F7F7;
+        border: 1px solid #CCCCCC;
+    }

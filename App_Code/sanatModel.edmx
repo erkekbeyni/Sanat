@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sanatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="eser">
+          <Key>
+            <PropertyRef Name="eser_id" />
+          </Key>
+          <Property Name="eser_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eser_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="eser_foto" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="sanatci">
+          <Key>
+            <PropertyRef Name="sanatci_id" />
+          </Key>
+          <Property Name="sanatci_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sanatci_adi" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="sanatci_bilgi" Type="nvarchar" MaxLength="140" />
+          <Property Name="eser_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sergi">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_tarih" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="s_bilgi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sanatci_id" Type="int" Nullable="false" />
+          <Property Name="s_resim1" Type="varbinary(max)" />
+          <Property Name="s_resim2" Type="varbinary(max)" />
+          <Property Name="s_guncel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="yorum">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yorum_user" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="yorum_yorum" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="yorum_tarih" Type="nchar" MaxLength="10" />
+          <Property Name="s_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_sanatci_eser">
+          <End Role="eser" Type="Self.eser" Multiplicity="1" />
+          <End Role="sanatci" Type="Self.sanatci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eser">
+              <PropertyRef Name="eser_id" />
+            </Principal>
+            <Dependent Role="sanatci">
+              <PropertyRef Name="eser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sergi_sanatci">
+          <End Role="sanatci" Type="Self.sanatci" Multiplicity="1" />
+          <End Role="sergi" Type="Self.sergi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanatci">
+              <PropertyRef Name="sanatci_id" />
+            </Principal>
+            <Dependent Role="sergi">
+              <PropertyRef Name="sanatci_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yorum_sergi">
+          <End Role="sergi" Type="Self.sergi" Multiplicity="0..1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sergi">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="s_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sanatModelStoreContainer">
+          <EntitySet Name="eser" EntityType="Self.eser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanatci" EntityType="Self.sanatci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sergi" EntityType="Self.sergi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yorum" EntityType="Self.yorum" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_sanatci_eser" Association="Self.FK_sanatci_eser">
+            <End Role="eser" EntitySet="eser" />
+            <End Role="sanatci" EntitySet="sanatci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sergi_sanatci" Association="Self.FK_sergi_sanatci">
+            <End Role="sanatci" EntitySet="sanatci" />
+            <End Role="sergi" EntitySet="sergi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_sergi" Association="Self.FK_yorum_sergi">
+            <End Role="sergi" EntitySet="sergi" />
+            <End Role="yorum" EntitySet="yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sanatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="eser">
+          <Key>
+            <PropertyRef Name="eser_id" />
+          </Key>
+          <Property Name="eser_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eser_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eser_foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="sanatci" Relationship="Self.FK_sanatci_eser" FromRole="eser" ToRole="sanatci" />
+        </EntityType>
+        <EntityType Name="sanatci">
+          <Key>
+            <PropertyRef Name="sanatci_id" />
+          </Key>
+          <Property Name="sanatci_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sanatci_adi" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sanatci_bilgi" Type="String" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="eser_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eser" Relationship="Self.FK_sanatci_eser" FromRole="sanatci" ToRole="eser" />
+          <NavigationProperty Name="sergi" Relationship="Self.FK_sergi_sanatci" FromRole="sanatci" ToRole="sergi" />
+        </EntityType>
+        <EntityType Name="sergi">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="s_tarih" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="s_bilgi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sanatci_id" Type="Int32" Nullable="false" />
+          <Property Name="s_resim1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="s_resim2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="s_guncel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sanatci" Relationship="Self.FK_sergi_sanatci" FromRole="sergi" ToRole="sanatci" />
+          <NavigationProperty Name="yorum" Relationship="Self.FK_yorum_sergi" FromRole="sergi" ToRole="yorum" />
+        </EntityType>
+        <EntityType Name="yorum">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yorum_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yorum_yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yorum_tarih" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="s_id" Type="Int32" />
+          <NavigationProperty Name="sergi" Relationship="Self.FK_yorum_sergi" FromRole="yorum" ToRole="sergi" />
+        </EntityType>
+        <Association Name="FK_sanatci_eser">
+          <End Role="eser" Type="Self.eser" Multiplicity="1" />
+          <End Role="sanatci" Type="Self.sanatci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eser">
+              <PropertyRef Name="eser_id" />
+            </Principal>
+            <Dependent Role="sanatci">
+              <PropertyRef Name="eser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sergi_sanatci">
+          <End Role="sanatci" Type="Self.sanatci" Multiplicity="1" />
+          <End Role="sergi" Type="Self.sergi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanatci">
+              <PropertyRef Name="sanatci_id" />
+            </Principal>
+            <Dependent Role="sergi">
+              <PropertyRef Name="sanatci_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yorum_sergi">
+          <End Role="sergi" Type="Self.sergi" Multiplicity="0..1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sergi">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="s_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sanatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="eser" EntityType="Self.eser" />
+          <EntitySet Name="sanatci" EntityType="Self.sanatci" />
+          <EntitySet Name="sergi" EntityType="Self.sergi" />
+          <EntitySet Name="yorum" EntityType="Self.yorum" />
+          <AssociationSet Name="FK_sanatci_eser" Association="Self.FK_sanatci_eser">
+            <End Role="eser" EntitySet="eser" />
+            <End Role="sanatci" EntitySet="sanatci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sergi_sanatci" Association="Self.FK_sergi_sanatci">
+            <End Role="sanatci" EntitySet="sanatci" />
+            <End Role="sergi" EntitySet="sergi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_sergi" Association="Self.FK_yorum_sergi">
+            <End Role="sergi" EntitySet="sergi" />
+            <End Role="yorum" EntitySet="yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sanatModelStoreContainer" CdmEntityContainer="sanatEntities">
+          <EntitySetMapping Name="eser">
+            <EntityTypeMapping TypeName="sanatModel.eser">
+              <MappingFragment StoreEntitySet="eser">
+                <ScalarProperty Name="eser_id" ColumnName="eser_id" />
+                <ScalarProperty Name="eser_adi" ColumnName="eser_adi" />
+                <ScalarProperty Name="eser_foto" ColumnName="eser_foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanatci">
+            <EntityTypeMapping TypeName="sanatModel.sanatci">
+              <MappingFragment StoreEntitySet="sanatci">
+                <ScalarProperty Name="sanatci_id" ColumnName="sanatci_id" />
+                <ScalarProperty Name="sanatci_adi" ColumnName="sanatci_adi" />
+                <ScalarProperty Name="sanatci_bilgi" ColumnName="sanatci_bilgi" />
+                <ScalarProperty Name="eser_id" ColumnName="eser_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sergi">
+            <EntityTypeMapping TypeName="sanatModel.sergi">
+              <MappingFragment StoreEntitySet="sergi">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="s_adi" ColumnName="s_adi" />
+                <ScalarProperty Name="s_tarih" ColumnName="s_tarih" />
+                <ScalarProperty Name="s_bilgi" ColumnName="s_bilgi" />
+                <ScalarProperty Name="sanatci_id" ColumnName="sanatci_id" />
+                <ScalarProperty Name="s_resim1" ColumnName="s_resim1" />
+                <ScalarProperty Name="s_resim2" ColumnName="s_resim2" />
+                <ScalarProperty Name="s_guncel" ColumnName="s_guncel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yorum">
+            <EntityTypeMapping TypeName="sanatModel.yorum">
+              <MappingFragment StoreEntitySet="yorum">
+                <ScalarProperty Name="yorum_id" ColumnName="yorum_id" />
+                <ScalarProperty Name="yorum_user" ColumnName="yorum_user" />
+                <ScalarProperty Name="yorum_yorum" ColumnName="yorum_yorum" />
+                <ScalarProperty Name="yorum_tarih" ColumnName="yorum_tarih" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

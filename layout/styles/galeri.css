@@ -1,0 +1,83 @@
+﻿@charset "utf-8";
+
+
+#galeri {
+    padding: 30px 0;
+}
+
+    #galeri ul {
+        display: block;
+        width: 960px;
+        height: 500px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+
+    #galeri li {
+        display: block;
+        float: left;
+        width: 184px;
+        height: 110px;
+        margin: 10px 10px 0 0;
+        padding: 0;
+    }
+
+        #galeri li.last {
+            margin-right: 0;
+        }
+
+    #galeri .placeholder {
+        display: block;
+        float: left;
+        width: 950px;
+        height: 370px;
+        margin: 0;
+        padding: 4px;
+        border: 1px solid #666666;
+        text-indent: -9999px;
+        background: 4px 4px no-repeat;
+    }
+
+    #galeri a.swap:link, #galeri a.swap:visited, #galeri a.swap:hover {
+        display: block;
+        width: 174px;
+        height: 100px;
+        margin: 0;
+        padding: 4px;
+        text-align: center;
+        border: 1px solid #666666;
+    }
+
+    #galeri a.swap img {
+        width: 174px;
+        height: 100px;
+    }
+
+    #galeri a.swap span img {
+        width: 950px;
+        height: 370px;
+    }
+
+a.swap:hover {
+    white-space: normal;
+}
+
+a.swap:link span, a.swap:visited span, a.swap:active span {
+    visibility: hidden;
+    position: absolute;
+    top: 35px;
+    left: 5px;
+    width: 950px;
+    height: 370px;
+}
+
+a.swap:active span, a.swap:hover span, a.swap:focus span {
+    visibility: visible;
+}
+
+a.swap:active img, a.swap:focus img {
+    position: relative;
+    z-index: 50;
+}
